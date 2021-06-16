@@ -10,24 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>HT: Queue</title>
+    <title>HT: Tables</title>
+    <style>
+        html,
+        body {
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            margin: 0;
+        }
+        
+        .wrapper {
+            height: 100%;
+        }
+        
+        img {
+            /* display: none; */
+            width: 10%;
+            margin: 2% 45%;
+        }
+    </style>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header class="center">
         <img src="https://rb.gy/zmcekx" alt="waiter icon">
-        <a title="Go back to HotTable Home" href="/" id="homeBtn" class="waves-effect waves-light btn" href="/">Back to Home</a>
-        <a title="Make a Reservation" id="reserveBtn" class="waves-effect waves-light btn" href="reserve">Reserve a Table</a>
+        <a title="Go back to HotTable Home" href="/" target="_blank" id="homeBtn" class="waves-effect waves-light btn" href="/">Back to Home</a>
+        <a title="Make a Reservation" id="reserveBtn" class="waves-effect waves-light btn" href="reserve" target="_blank">Reserve a Table</a>
         <!-- <a title="View Tables" id="viewTableBtn" class="waves-effect waves-light btn">Reservation Queue</a> -->
     </header>
     <main>
         <section id="tables">
 
-
         </section>
+        <hr>
         <section id="waitlist">
-
         </section>
     </main>
     <!-- jquery cdn -->

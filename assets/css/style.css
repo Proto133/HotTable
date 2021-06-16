@@ -14,3 +14,11 @@ img {
     width: 10%;
     margin: 2% 45%;
 }
+
+section {
+    display: flex;
+    background-color: lightgray;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

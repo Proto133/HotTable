@@ -37,6 +37,9 @@ app.get('/reserve', (req, res) => {
 app.get('/tables', (req, res) => {
     res.sendFile(path.join(__dirname, 'tables.html'));
 })
+app.get('/waitlist', (req, res) => {
+    res.sendFile(path.join(__dirname, 'waitlist.html'))
+})
 
 
 //API get data
@@ -53,27 +56,40 @@ app.get('/api/waitlist', (req, res) => {
     res.json(data.waitlist);
 })
 
-// Displays a single character, or returns false
-// app.get('/api/reservations/:table', (req, res) => {
-//     const chosen = req.params.table;
-//     console.log(chosen);
-// })
-
-// Create New Characters - takes in JSON input
+// Create New RESERVTIONS- takes in JSON input
 app.post('/api/reservations', (req, res) => {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     const newTable = req.body;
     if (newTable && newTable.name)
-        newTable.uid = newTable.uid.replace(/\s+/g, '').toLowerCase();
+        newTable.uid = newTable.uid.replace(/\s+/g, '').toUpperCase();
     if (data.reservations.length < 5) {
         data.reservations.push(newTable);
     } else {
         data.waitlist.push(newTable);
+        data.waitlist.seated = false;
     }
 
     res.json(newTable);
 });
+
+// Get new table data entry from POST
+app.post("/api/new", function(req, res) {
+    let tableData = req.body;
+    if (data.reservations.length < 5) {
+        tableData.seated = true;
+        data.reservations.push(tableData);
+    } else {
+        tableData.seated = false;
+        data.waitlist.push(tableData);
+    }
+
+    console.log('tableData:', tableData);
+
+    res.json(tableData);
+});
+
+
 
 app.get("/api/remove/:id?", function(req, res) {
     let tableId = req.params.id;

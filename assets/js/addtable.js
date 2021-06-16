@@ -1,7 +1,5 @@
 let tableNumber = 1;
-const addBtn = document.getElementById('sendResBtn');
-// Question: What is"e" short for?
-addBtn.addEventListener('click', (e) => {
+$('#sendResBtn').on('click', (e) => {
     e.preventDefault();
 
     // GET DATA FROM INPUT FIELDS
@@ -22,35 +20,43 @@ addBtn.addEventListener('click', (e) => {
     if (tableNumber > 5) {
         tableNumber = 1
     }
-    console.log('addtable line 25 tableNumber=', tableNumber)
 
+    let currentURL = window.location.origin;
+    $.post(currentURL + "/api/new", newTable,
+        function(data) {
 
-    console.log('newTable=', newTable);
-
-    // Question: What does this code do??
-    fetch('/api/reservations/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newTable),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data === true) {
-                alert(`Added Reservation for: ${data.name}`);
+            console.log('data:', data)
+                // If a table is available... tell user they are booked.
+            if (data.seated === true) {
+                alert("Yay! You are officially booked!")
             }
-            if (data === false) {
-                alert(`You have been added to the waitlist, please check back for changes.`)
+
+            // If a table is available... tell user they on the waiting list.
+            if (data.seated === false) {
+                alert("You are on the waitlist and will be seated as soon as possible.")
             }
-            document.getElementById('icon_prefix').value = ''
-            document.getElementById('icon_phone').value = ''
-            document.getElementById('icon_email').value = ''
-            document.getElementById('icon_UID').value = ''
-        })
-        .catch((error) => {
-            console.error('Error:', error);
+
         });
 
+    // fetch('/api/reservations/', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(newTable),
+    //     })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         console.log('data = ', data)
+    //         if (data.name != "" && data.uid != "") {
+    //             alert(`Added Reservation for: ${data.name}`);
+    //         }
+    //         if (data.name == "" |) {
+    //             alert(`You have been added to the waitlist, please check back for changes.`)
+    //         }
+    document.getElementById('icon_prefix').value = ''
+    document.getElementById('icon_phone').value = ''
+    document.getElementById('icon_email').value = ''
+    document.getElementById('icon_UID').value = ''
     return false;
 });

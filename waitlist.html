@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>HotTable Home</title>
+    <title>HT: Waitlist</title>
     <style>
         html,
         body {
@@ -34,15 +34,21 @@
 
 <body>
     <header class="center">
-        <img id="logo" src="https://rb.gy/zmcekx" alt="waiter icon">
-        <a title="Make a Reservation" href="reserve" id="reserveBtn" class="waves-effect waves-light btn">Reserve a Table</a>
-        <a title="View Tables" id="waitlistBtn" href="waitlist" class="waves-effect waves-light btn">Reservation Queue</a>
-        <a title="View Tables" id="tablesBtn" href="tables" class="waves-effect waves-light btn">Current Tables</a>
+        <img src="https://rb.gy/zmcekx" alt="waiter icon">
+        <a title="Go back to HotTable Home" href="/" target="_blank" id="homeBtn" class="waves-effect waves-light btn" href="/">Back to Home</a>
+        <a title="Make a Reservation" id="reserveBtn" class="waves-effect waves-light btn" href="reserve" target="_blank">Reserve a Table</a>
+        <!-- <a title="View Tables" id="viewTableBtn" class="waves-effect waves-light btn">Reservation Queue</a> -->
     </header>
-
-    <!-- <script type="text/javascript" src='server.js'></script> -->
-    <!-- <script type="text/javascript" src='/js/addtable.js'></script> -->
+    <main>
+        <h1>Waitlist:</h1>
+        <section id="waitlist">
+        </section>
+    </main>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='/js/getwaitlist.js'></script>
     <script type="text/javascript" src='/js/scripts.js'></script>
+
 
 </body>
 
