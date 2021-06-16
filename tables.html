@@ -10,38 +10,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>HotTable Home</title>
-    <style>
-        html,
-        body {
-            font-family: 'Roboto', sans-serif;
-            height: 100%;
-            margin: 0;
-        }
-        
-        .wrapper {
-            height: 100%;
-        }
-        
-        img {
-            /* display: none; */
-            width: 10%;
-            margin: 2% 45%;
-        }
-    </style>
+    <title>HT: Queue</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header class="center">
         <img src="https://rb.gy/zmcekx" alt="waiter icon">
-        <a title="Go back to HotTable Home" href="/" id="homeBtn" class="waves-effect waves-light btn">Back to Home</a>
-        <a title="Make a Reservation" id="reserveBtn" class="waves-effect waves-light btn">Reserve a Table</a>
-        <a title="View Tables" id="viewTableBtn" class="waves-effect waves-light btn">Reservation Queue</a>
+        <a title="Go back to HotTable Home" href="/" id="homeBtn" class="waves-effect waves-light btn" href="/">Back to Home</a>
+        <a title="Make a Reservation" id="reserveBtn" class="waves-effect waves-light btn" href="reserve">Reserve a Table</a>
+        <!-- <a title="View Tables" id="viewTableBtn" class="waves-effect waves-light btn">Reservation Queue</a> -->
     </header>
-    <script type="text/javascript">
-        //initialize Materialize js elements
-        M.AutoInit();
-    </script>
+    <main>
+        <section id="tables">
+
+
+        </section>
+        <section id="waitlist">
+
+        </section>
+    </main>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='/js/gettables.js'></script>
+    <script type="text/javascript" src='/js/scripts.js'></script>
+
+
 </body>
 
 </html>

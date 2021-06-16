@@ -5,7 +5,7 @@ const path = require('path');
 // Sets up the Express App
 
 const app = express();
-var PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -13,63 +13,96 @@ app.use(express.json());
 app.use(express.static(__dirname + '/assets'))
 let tableNumber = 1;
 
-// on sendResBtn click { send res & tableNumber++}
-// if tables.length > 5 {send new Table to waitlist JSON}
+
 
 //Reservations
-const reservations = [];
+const data = {
+    reservations: [],
+    waitlist: [],
 
-//Tables 
-//Tables equal reservations.seated = true
-const tables = []
-
-//Waitlist 
-//Waitlist equal reservations.seated = false
-const waitlist = []
+};
 
 
-
-
+// Routing
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 })
 
-app.get('/index.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-})
-app.get('/reserve.html', (req, res) => {
+// app.get('/index.html', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'index.html'));
+// })
+app.get('/reserve', (req, res) => {
     res.sendFile(path.join(__dirname, 'reserve.html'));
 })
+app.get('/tables', (req, res) => {
+    res.sendFile(path.join(__dirname, 'tables.html'));
+})
 
-// Displays all characters
+
+//API get data
+//Returns both the tables array and the waitlist array
+app.get("/api/", function(req, res) {
+    res.json(data);
+});
+
 app.get('/api/reservations', (req, res) => {
-    res.json(reservations);
+    res.json(data.reservations);
+})
+
+app.get('/api/waitlist', (req, res) => {
+    res.json(data.waitlist);
 })
 
 // Displays a single character, or returns false
-app.get('/api/reservations/:table', (req, res) => {
-    const chosen = req.params.table;
-    console.log(chosen);
-})
+// app.get('/api/reservations/:table', (req, res) => {
+//     const chosen = req.params.table;
+//     console.log(chosen);
+// })
 
 // Create New Characters - takes in JSON input
 app.post('/api/reservations', (req, res) => {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     const newTable = req.body;
+    if (newTable && newTable.name)
+        newTable.uid = newTable.uid.replace(/\s+/g, '').toLowerCase();
+    if (data.reservations.length < 5) {
+        data.reservations.push(newTable);
+    } else {
+        data.waitlist.push(newTable);
+    }
 
-    // Using a RegEx Pattern to remove spaces from newCharacter
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newTable.uid = newTable.uid.replace(/\s+/g, '').toLowerCase();
-    console.log('newTable.routename=', newTable.uid);
-
-    reservations.push(newTable);
     res.json(newTable);
 });
 
+app.get("/api/remove/:id?", function(req, res) {
+    let tableId = req.params.id;
+    console.log('tableId: \n', tableId);
+    if (tableId) {
+        for (let i = 0; i < data.reservations.length; i++) {
+            if (tableId === data.reservations[i].uid) {
+                data.reservations.splice(i, 1);
+                if (data.waitlist.length > 0) {
+                    let tempTable = data.waitlist.splice(0, 1)[0];
+                    data.reservations.push(tempTable);
+                }
+
+                return res.json(true);
+            }
+        }
+        for (let i = 0; i < data.waitlist.length; i++) {
+            if (tableId === data.waitlist[i].uid) {
+                data.waitlist.splice(i, 1);
+
+                return res.json(true);
+            }
+        }
+        return res.json(false);
+    }
+    return res.json(false);
+});
 
 // Starts the server to begin listening
-
 app.listen(PORT, () => {
     console.log(`App listening on PORT ${PORT}`);
 })
