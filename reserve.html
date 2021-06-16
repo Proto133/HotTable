@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Materialize CSS -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>HotTable Reserve</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="center">
+        <img src="https://rb.gy/zmcekx" alt="waiter icon">
+        <a title="Go back to HotTable Home" href="/" id="homeBtn" class="waves-effect waves-light btn">Back to Home</a>
+    </header>
+    <main>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Name for Party</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_phone" type="tel" class="validate">
+                        <label for="icon_phone">Telephone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">email</i>
+                        <input id="icon_email" type="email" class="validate">
+                        <label for="icon_email">Email Address</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">verified</i>
+                        <input id="icon_UID">
+                        <label for="icon_UID">Unique ID</label>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button id="sendResBtn" class="btn waves-effect waves-light" type="button" name="action">Make Reservation
+                        <i class="material-icons right">send</i>
+                      </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    <script type="text/javascript">
+        //initialize Materialize js elements
+        M.AutoInit();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+img {
+    /* display: none; */
+    width: 10%;
+    margin: 2% 45%;
+}

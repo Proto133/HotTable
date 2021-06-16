@@ -1,0 +1,23 @@
+{
+    "name": "hottable",
+    "version": "1.0.0",
+    "description": "Generic Restaraunt Reservation Application",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Proto133/HotTable.git"
+    },
+    "author": "Peter Roto, Kenneth Cheng, Kyaah Ellis",
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/Proto133/HotTable/issues"
+    },
+    "homepage": "https://github.com/Proto133/HotTable#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
